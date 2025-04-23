@@ -9,7 +9,7 @@ const PasswordInput = ({value, onChange, placeholder}) => {
         setIsShowPassword(!isShowPassword)
     }
 
-  return (
+    return (
     <div className='flex items-center bg-transparent border-[1.5px] px-5 rounded mb-2'>
         <input
             value={value}
@@ -33,7 +33,7 @@ const PasswordInput = ({value, onChange, placeholder}) => {
 
 
     </div>
-  )
+    )
 }
 
 export default PasswordInput;
