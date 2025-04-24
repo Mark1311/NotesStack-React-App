@@ -57,3 +57,18 @@ body {
     background-color: #2563eb;
     /* Tailwind's blue-600 */
 }
+
+.icon-btn {
+    font-size: 1.25rem; /* Tailwind's text-xl */
+    color: #e2e8f0; /* Tailwind's text-slate-200 */
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    color: var(--color-primary); /* Replace with your actual primary color if not using CSS variables */
+}
+
+.input-lable {
+    font-size: 0.75rem; /* Tailwind's text-xs */
+    color: #94a3b8; /* Tailwind's text-slate-400 */
+}
