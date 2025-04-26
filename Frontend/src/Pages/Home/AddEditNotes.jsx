@@ -55,7 +55,7 @@ const AddEditNotes = ({noteData, type, onClose}) => {
       </div>
 
       <div className="flex flex-col gap-2 mt-4">
-        <lable className="input-lable">CONTENT</lable>
+        <label className="input-lable">CONTENT</label>
         <textarea
           type="text"
           className="text-sm text-slate-950 potline-none bg-slate-50 rounded"
@@ -67,7 +67,7 @@ const AddEditNotes = ({noteData, type, onClose}) => {
       </div>
 
       <div className="mt-3">
-        <lable className="btn-primary font-medium mt-5 p-3">TAGS</lable>
+        <label className="btn-primary font-medium mt-5 p-3">TAGS</label>
         <TagInput tags = {tags} setTag={setTags}/>
       </div>
 

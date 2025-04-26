@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../Components/NavBar/Navbar";
 import PasswordInput from "../../Components/Input/PasswordInput";
 import { validateEmail } from "../../Utils/helper";
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Singup = () => {
   const [name, setName] = useState("");
@@ -11,25 +10,55 @@ const Singup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate()
+
   const handleSingup = async (e) => {
     e.preventDefault();
 
-    if(!name){
-        setError("Please Entr Name");
-        return
+    if (!name) {
+      setError("Please Entr Name");
+      return;
     }
 
-    if(!validateEmail(email)){
-        setError("Enter Valid Email")
+    if (!validateEmail(email)) {
+      setError("Enter Valid Email");
     }
 
-    if(!password){
-        setError("Enter Password")
-        return;
+    if (!password) {
+      setError("Enter Password");
+      return;
     }
-    setError("")
+    setError("");
 
     // Singup Api Here
+
+    try {
+      const response = await axisoInstance.post("/create-account", {
+        fullName: name,
+        email: email,
+        password: password,
+      });
+      //Handle SuccFully Response
+      if (response.data && response.data.accessToken) {
+        setError(response.data.message)
+        return
+      }
+      if(response.data && response.data.accessToken){
+        localStorage.setItem("token", response.data.accessToken)
+        navigate('/dashboard')
+      }
+    } catch (error) {
+      //Handle register error
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+      } else {
+        setError("An Expected Error Occured");
+      }
+    }
   };
 
   return (
@@ -66,12 +95,11 @@ const Singup = () => {
               Create Account
             </button>
             <p className="text-sm text-center mt-4">
-              Already Have a Account? 
+              Already Have a Account?
               <Link to="/login" className="font-medium text-primary underline">
-                Lo  gin
+                Lo gin
               </Link>
             </p>
-
           </form>
         </div>
       </div>
