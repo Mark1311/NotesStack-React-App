@@ -3,7 +3,7 @@ import ProfileInfo from '../Cards/ProfileInfo'
 import {useNavigate} from 'react-router-dom'
 import SerachBar from '../SerachBar/SerachBar';
 
-const Navbar = ({userInfo}) => {
+const Navbar = ({userInfo, onSearchNotes, handleClearSearch}) => {
 
   const [searchQuery, setSearchQuery] = useState("")
   const navigate = useNavigate();
@@ -14,10 +14,14 @@ const Navbar = ({userInfo}) => {
   }
 
   const handleSerach = ()=>{
+    if(searchQuery){
+      onSearchNotes(searchQuery)
+    }
   };
 
   const onClearSearch = () =>{
     setSearchQuery("")
+    handleClearSearch()
   }
 
   return (
