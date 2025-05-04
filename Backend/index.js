@@ -3,7 +3,10 @@ require("dotenv").config();
 const config = require("./config.json");
 const mongoose = require("mongoose");
 
-mongoose.connect(config.connectionString);
+mongoose.connect(config.connectionString)
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.error("MongoDB connection error:", err));
+
 const User = require("./models/user.model");
 const Note = require("./models/note.model");
 const express = require("express");
@@ -285,8 +288,8 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
 // Search isPinned value
 
 app.get("/search-notes/:noteId", authenticateToken, async (req, res) => {
-  const (user) = req.user;
-  const {query} = req. query;
+  const user = req.user;
+  const {query} = req.query;
 
   if(!query){
     return res.status(400).json({error:true, message:"Search query is req"})
@@ -297,8 +300,8 @@ app.get("/search-notes/:noteId", authenticateToken, async (req, res) => {
     const matchingNotes = await Note.find({
       userId : user._id,
       $or:[
-        {title:{$regex : new RegEx{query, "i"}}},
-        {content : {$regex : new RegEx{query, "i"}}} 
+        {title:{$regex : new RegEx(query, "i") } },
+        {content : {$regex : new RegEx(query, "i")}} 
       ],
     });
     return res.json({
