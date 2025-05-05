@@ -108,7 +108,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes, showToastMessage }
           placeholder="Content"
           rows={10}
           value={content}
-          onChange={(target) => setContent(target.value)}
+          onChange={(e) => setContent(e.target.value)}
         />
       </div>
 

@@ -59,7 +59,7 @@ app.post("/create-account", async (req, res) => {
 
   const isUser = await User.findOne({ email: email });
 
-  if (!isUser) {
+  if (isUser) {
     return res.json({ error: true, message: "User Alredy Exist" });
   }
 
@@ -178,7 +178,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const { user } = req.user;
 
   if (!title && !content && !tags) {
-    return res.status(400).json({ error: trur, message: "No Chnage provided" });
+    return res.status(400).json({ error: true, message: "No Chnage provided" });
   }
 
   try {
