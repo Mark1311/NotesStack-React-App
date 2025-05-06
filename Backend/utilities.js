@@ -7,7 +7,7 @@ function authenticateToken(req, res, next) {
     if (!token) return res.sendStatus(401); // Unauthorized
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403); // Forbidden
+        if (err) return res.sendStatus(401); // Forbidden
         req.user = user;
         next();
     });

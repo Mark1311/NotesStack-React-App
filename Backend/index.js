@@ -34,14 +34,15 @@ app.get("/", (req, res) => {
 //Create Account
 
 app.post("/create-account", async (req, res) => {
+
+
   if (!req.body) {
-    //my gtp code
     return res
       .status(400)
       .json({ error: true, message: "Request body missing" });
   }
 
-  const { fullName, email, password } = req.body;
+  const {fullName, email, password} = req.body;
 
   if (!fullName) {
     return res
@@ -139,9 +140,10 @@ app.post("/get-user", authenticateToken, async (req, res) => {
 
 // Create Notes
 
-app.post("/add-note", async (req, res) => {
+app.post("/add-note", authenticateToken, async (req, res) => {
   const { title, content, tags } = req.body;
-  const { user } = req.body;
+  // const { user } = req.body;
+  const user = req.user.user;
 
   if (!title) {
     return res.status(400).json({ error: true, message: "Title is Req" });
@@ -175,6 +177,7 @@ app.post("/add-note", async (req, res) => {
 app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { title, content, tags, isPinned } = req.body;
+  console.log(req.body)
   const { user } = req.user;
 
   if (!title && !content && !tags) {
@@ -199,6 +202,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
       message: "Note Update Succ",
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({
       error: true,
       message: "Internal Server Error",
