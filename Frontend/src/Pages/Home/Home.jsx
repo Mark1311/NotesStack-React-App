@@ -167,9 +167,7 @@ const Home = () => {
                 content={item.content}
                 tags={item.tags}
                 isPinned={item.isPinned}
-                onEdit={() => {
-                  handleEdit(item);
-                }}
+                onEdit={() => handleEdit(item)}
                 onDelete={() => deleteNote(item)}
                 onPinNote={() => updateIsPinned(item)}
               />
