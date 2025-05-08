@@ -123,7 +123,7 @@ app.post("/login", async (req, res) => {
 
 //Get User
 
-app.post("/get-user", authenticateToken, async (req, res) => {
+app.get("/get-user", authenticateToken, async (req, res) => {
   const { user } = req.user;
 
   const isUser = await User.findOne({ _id: user._id });
@@ -275,7 +275,7 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
     note.isPinned = isPinned;
 
     await note.save();
-    
+
     return res.json({
       error: false,
       note,
