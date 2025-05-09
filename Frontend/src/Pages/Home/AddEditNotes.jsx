@@ -19,7 +19,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes, showToastMessage }
         tags,
       });
       if (response.data && response.data.note) {
-        showToastMessage("Notes Add SuccessFully")
+        showToastMessage("Notes Add SuccessFully", "ADD")
         getAllNotes();
         onClose();
       }
@@ -45,7 +45,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes, showToastMessage }
         tags,
       });
       if (response.data && response.data.note) {
-        showToastMessage("Notes Edit SuccessFully")
+        showToastMessage("Notes Edit SuccessFully", "edit")
         getAllNotes();
         onClose();
       }

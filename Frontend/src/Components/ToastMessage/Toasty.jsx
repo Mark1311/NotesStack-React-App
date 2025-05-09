@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { LuCheck } from "react-icons/lu";
 import { MdDeleteOutline } from "react-icons/md";
 
-export const Toasty = (isShow, message, type, onClose) => {
+export const Toasty = ({isShow, message, type, onClose}) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       onClose();
@@ -15,7 +15,7 @@ export const Toasty = (isShow, message, type, onClose) => {
   return (
     <div
       className={`absolute top-20 right-6 transition-all duration-400 
-        ${!isShow ? "opacity-100" : "opacity-0"}`}
+         ${isShow ? "opacity-100" : "opacity-0"}`}
     >
       <div
         className={`min-w52 bg-white border shadow-2xl rounded-md after:w-[5px] after:h-full 

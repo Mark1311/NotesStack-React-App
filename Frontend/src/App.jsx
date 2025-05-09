@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from './Pages/Home/Home.jsx'
 import Login from './Pages/Login/Login.jsx'
 import Singup from './Pages/Singup/Singup.jsx'
+import Modal from 'react-modal';
+
+
+Modal.setAppElement('#root');
 
 const routes = (
   <Router>
