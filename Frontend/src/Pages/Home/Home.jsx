@@ -130,7 +130,8 @@ const Home = () => {
         }
       );
       if (response.data && response.data.note) {
-        showToastMessage("Notes Edit SuccessFully");
+        showToastMessage(!noteData.isPinned ? "Note pinned successfully" : "Note unpinned successfully",
+          "edit");
         getAllNotes();
       }
     } catch (error) {
