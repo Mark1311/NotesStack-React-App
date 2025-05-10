@@ -291,33 +291,34 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
 
 // Search isPinned value
 
-app.get("/search-notes/:noteId", authenticateToken, async (req, res) => {
+app.get("/search-notes", authenticateToken, async (req, res) => {
   const user = req.user;
-  const {query} = req.query;
+  const { query } = req.query;
 
-  if(!query){
-    return res.status(400).json({error:true, message:"Search query is req"})
+  if (!query) {
+    return res.status(400).json({ error: true, message: "Search query is required" });
   }
 
-  try{
-
+  try {
     const matchingNotes = await Note.find({
-      userId : user._id,
-      $or:[
-        {title:{$regex : new RegEx(query, "i") } },
-        {content : {$regex : new RegEx(query, "i")}} 
+      // userId: user._id,
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { content: { $regex: query, $options: "i" } },
+        { tags: { $elemMatch: { $regex: query, $options: "i" } } }
       ],
     });
+
     return res.json({
       error: false,
-      notes : matchingNotes,
-      message: "Notes matching the Serach query retrived Successfully"
+      notes: matchingNotes,
+      message: "Notes matching the search query retrieved successfully"
     });
-
-  }catch(error){
-    return res.status(500).json({error: true, message: "Internal Server Error"})
-  };
-})
+  } catch (error) {
+    console.error("Search error:", error);
+    return res.status(500).json({ error: true, message: "Internal Server Error" });
+  }
+});
 
 app.listen(8000);
 module.exports = app;

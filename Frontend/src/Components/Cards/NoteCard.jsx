@@ -23,17 +23,19 @@ const NoteCard = ({
           </span>
         </div>
         <MdOutlinePushPin
-          className={`${
-            isPinned ? "text-yellow-500" : "text-gray-800"
-          }`}
+          className={`${isPinned ? "text-yellow-500" : "text-gray-800"}`}
           onClick={onPinNote}
         />
       </div>
       <p className="text-xs text-slate-600 mt-2">{content?.slice(0, 60)}</p>
 
       <div className="flex items-center justify-between mt-2">
-        <div className="text-xs text-slate-200">
-          {(tags || []).map((item) => `${item}`)}
+        <div className="flex flex-wrap gap-1 text-xs text-blue-600">
+          {(tags || []).map((item, index) => (
+            <span key={index} className="bg-blue-100 px-2 py-0.5 rounded">
+              #{item}
+            </span>
+          ))}
         </div>
         <div className="flex items-center gap-2">
           <MdCreate

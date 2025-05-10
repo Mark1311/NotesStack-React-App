@@ -104,10 +104,12 @@ const Home = () => {
   // Search for Notes
 
   const onSearchNotes = async (query) => {
+    console.log("Query being searched:", query);  // Add this log
     try {
       const response = await axisoInstance.get("/search-notes", {
         params: { query },
       });
+      console.log("API Response:", response.data);
       if (response.data && response.data.notes) {
         setIsSearch(true);
         setAllNotes(response.data.notes);
@@ -116,7 +118,7 @@ const Home = () => {
       console.log(error);
     }
   };
-
+  
   // IsPinned Notes
 
   const updateIsPinned = async (noteData) => {

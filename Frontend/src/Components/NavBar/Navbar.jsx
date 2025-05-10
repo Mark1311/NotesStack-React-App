@@ -30,7 +30,7 @@ const Navbar = ({ userInfo, onSearchNotes, handleClearSearch, showSearchBar = tr
       {showSearchBar && userInfo && (
         <SerachBar
           value={searchQuery}
-          onChnage={({ target }) => setSearchQuery(target.value)}
+          onChange={({ target }) => setSearchQuery(target.value)}
           handleSerach={handleSerach}
           onClearSearch={onClearSearch}
         />
