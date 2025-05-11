@@ -4,11 +4,11 @@ import {IoMdClose} from 'react-icons/io'
 
 const SerachBar = ({value, onChange, handleSerach, onClearSearch}) => {
   return (
-    <div className='w-80 flex items-center px-4 bg-slate-300 rounded-md'>
+    <div className='w-100 h-10 flex items-center px-4 bg-slate-300 rounded-md'>
         <input
             type='text'
-            placeholder='Serach Notes'
-            className='w-full text-xs bg-transparent py-[11px] outline-none'
+            placeholder='Search Notes Tags...'
+            className='w-full text-1xs bg-transparent py-[11px] outline-none'
             value={value}
             onChange={onChange}
         />

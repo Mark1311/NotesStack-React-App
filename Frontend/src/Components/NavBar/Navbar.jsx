@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import ProfileInfo from "../Cards/ProfileInfo";
 import { useNavigate } from "react-router-dom";
 import SerachBar from "../SerachBar/SerachBar";
+import Navbar_icons from "../../assets/images/Navbar_icons.gif";
 
-const Navbar = ({ userInfo, onSearchNotes, handleClearSearch, showSearchBar = true, }) => {
+const Navbar = ({
+  userInfo,
+  onSearchNotes,
+  handleClearSearch,
+  showSearchBar = true,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -25,7 +31,10 @@ const Navbar = ({ userInfo, onSearchNotes, handleClearSearch, showSearchBar = tr
 
   return (
     <div className="bg-white flex items-center justify-between px-6 py-2 drop-shadow">
-      <h2 className="text-xl font-medium text-black py-2">Notes</h2>
+      <h1 className="text-xl font-medium text-black py-2 flex items-center gap-2">
+        <img src={Navbar_icons} alt="Navbar_icon" className="w-15 h-15" />
+        NotesStack
+      </h1>
 
       {showSearchBar && userInfo && (
         <SerachBar

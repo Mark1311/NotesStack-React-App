@@ -1,6 +1,7 @@
 import React from "react";
 import { MdOutlinePushPin } from "react-icons/md";
-import { MdCreate, MdDelete } from "react-icons/md";
+import {  MdDelete } from "react-icons/md";
+import { FaPencilAlt } from "react-icons/fa";
 import moment from "moment";
 
 const NoteCard = ({
@@ -15,15 +16,15 @@ const NoteCard = ({
 }) => {
   return (
     <div className="border rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out">
-      <div className=" flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <div>
-          <h6 className="text-sm font-medium">{title}</h6>
-          <span className="text-xs text-slate-500">
+          <h1 className="font-medium">{title}</h1>
+          <span className="text-xs text-slate-600">
             {moment(date).format("Do MMM YYYY")}
           </span>
         </div>
         <MdOutlinePushPin
-          className={`${isPinned ? "text-yellow-500" : "text-gray-800"}`}
+          className={`${isPinned ? "text-blue-800 text-xl" : "text-gray-800"}`}
           onClick={onPinNote}
         />
       </div>
@@ -38,12 +39,12 @@ const NoteCard = ({
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <MdCreate
-            className="icon-btn hover:text-green-600"
+          <FaPencilAlt
+            className="hover:text-green-600 "
             onClick={onEdit}
           />
           <MdDelete
-            className="icon-btn hover:text-red-600"
+            className="hover:text-red-600 text-xl"
             onClick={onDelete}
           />
         </div>
