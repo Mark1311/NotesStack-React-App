@@ -6,72 +6,73 @@ import { validateEmail } from "../../Utils/helper";
 import axisoInstance from "../../Utils/axiosInstance";
 
 const Login = () => {
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
 
   const navigate = useNavigate()
 
-  const handleLogin = async (e)=>{
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-
-    if(!validateEmail(email)){
+    if (!validateEmail(email)) {
       setError("Please Enter a Valid Email");
       return;
     }
 
-    if(!password){
-      setError("Plese the password enter");
+    if (!password) {
+      setError("Please enter the password");
       return;
     }
-    setError("")
+    setError("");
 
-    //Login API Call
-
-    try{
-      const response = await axisoInstance.post('/login',{
-        email:email,
-        password:password,
+    // Login API Call
+    try {
+      const response = await axisoInstance.post('/login', {
+        email: email,
+        password: password,
       });
-      //Handle SuccFully Response
-      if(response.data && response.data.accessToken){
-        localStorage.setItem("token",response.data.accessToken)
+      // Handle Successfully Response
+      if (response.data && response.data.accessToken) {
+        localStorage.setItem("token", response.data.accessToken)
         navigate('/dashboard')
       }
-    }catch(error){
-      //Handle login error
-      if(error.response && error.response.data && error.response.data.message){
+    } catch (error) {
+      // Handle login error
+      if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message)
-      }else{
-        setError("An Expected Error Occured")
+      } else {
+        setError("An Expected Error Occurred")
       }
     }
-
-
-
-
-
-
   }
-
-  
 
   return (
     <>
-      <Navbar showSearchBar={false}/>
+      <Navbar showSearchBar={false} />
 
       <div className="flex items-center justify-center mt-28">
         <div className="w-96 border rounded bg-white px-7 py-10">
           <form onSubmit={handleLogin}>
             <h4 className="text-2xl mb-7">Login</h4>
-            <input type="text" placeholder="Email" className="input-box" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <PasswordInput value={password} onChange={(e) =>setPassword(e.target.value)}/>
+            
+            {/* Email Input */}
+            <input
+              type="text"
+              placeholder="Email"
+              className="input-box border-b border-black focus:outline-none focus:border-transparent"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            
+            {/* Password Input */}
+            <PasswordInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
-              
             <button type="submit" className="btn-primary">
               Login
             </button>

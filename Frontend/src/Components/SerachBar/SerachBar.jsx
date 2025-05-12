@@ -1,23 +1,31 @@
 import React from 'react'
 import { IoSearch } from "react-icons/io5";
-import {IoMdClose} from 'react-icons/io'
+import { IoMdClose } from 'react-icons/io';
 
-const SerachBar = ({value, onChange, handleSerach, onClearSearch}) => {
+const SerachBar = ({ value, onChange, handleSerach, onClearSearch }) => {
   return (
-    <div className='w-100 h-10 flex items-center px-4 bg-slate-300 rounded-md'>
-        <input
-            type='text'
-            placeholder='Search Notes Tags...'
-            className='w-full text-1xs bg-transparent py-[11px] outline-none'
-            value={value}
-            onChange={onChange}
+    <div className='w-full max-w-md h-10 flex items-center px-3 sm:px-4 bg-slate-300 rounded-md'>
+      <input
+        type='text'
+        placeholder='Search Notes Tags...'
+        className='flex-1 text-sm bg-transparent py-[10px] pr-2 outline-none'
+        value={value}
+        onChange={onChange}
+      />
+
+      {value && (
+        <IoMdClose
+          className='text-lg sm:text-xl text-slate-500 cursor-pointer hover:text-black mr-2'
+          onClick={onClearSearch}
         />
+      )}
 
-        { value && <IoMdClose className='text-xl text-slate-500 cursor-pointer hover:text-black mr-3' onClick={onClearSearch}/>}
-
-        <IoSearch className='text-slate-500 cursor-pointer hover:text-black' onClick={handleSerach}/>
+      <IoSearch
+        className='text-lg sm:text-xl text-slate-500 cursor-pointer hover:text-black'
+        onClick={handleSerach}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default SerachBar
+export default SerachBar;

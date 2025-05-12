@@ -104,7 +104,7 @@ const Home = () => {
   // Search for Notes
 
   const onSearchNotes = async (query) => {
-    console.log("Query being searched:", query);  // Add this log
+    console.log("Query being searched:", query); // Add this log
     try {
       const response = await axisoInstance.get("/search-notes", {
         params: { query },
@@ -118,7 +118,7 @@ const Home = () => {
       console.log(error);
     }
   };
-  
+
   // IsPinned Notes
 
   const updateIsPinned = async (noteData) => {
@@ -132,8 +132,12 @@ const Home = () => {
         }
       );
       if (response.data && response.data.note) {
-        showToastMessage(!noteData.isPinned ? "Note pinned successfully" : "Note unpinned successfully",
-          "edit");
+        showToastMessage(
+          !noteData.isPinned
+            ? "Note pinned successfully"
+            : "Note unpinned successfully",
+          "edit"
+        );
         getAllNotes();
       }
     } catch (error) {
@@ -159,9 +163,9 @@ const Home = () => {
         onSearchNotes={onSearchNotes}
         handleClearSearch={handleClearSearch}
       />
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {allNotes.length > 0 ? (
-          <div className="grid grid-cols-3 gap-4 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
             {allNotes.map((item, index) => (
               <NoteCard
                 key={item._id}
@@ -179,18 +183,20 @@ const Home = () => {
         ) : (
           <EmptyCard
             imgSrc={isSearch ? NoNotesImg : AddNotesImg}
-            message={isSearch ? "Oops No Notes" : "start you notes here"}
+            message={isSearch ? "Oops No Notes" : "Start Your Notes Here"}
           />
         )}
       </div>
+
       <button
-        className="w-16 h-16 flex items-center justify-center rounded-2xl bg-yellow hover:bg-blue-600 absolute right-10 bottom-10"
-        onClick={() => {
-          setOpenAddEditModal({ isShow: true, type: "add", date: null });
-        }}
-      >
-        <MdAdd className="text-[32px] text-red" />
-      </button>
+  className="w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-600 border border-transparent hover:bg-white hover:border-blue-500 group fixed right-10 bottom-10 transition-colors duration-200"
+  onClick={() => {
+    setOpenAddEditModal({ isShow: true, type: "add", date: null });
+  }}
+>
+  <MdAdd className="text-[32px] text-black group-hover:text-blue-500 transition-colors duration-200" />
+</button>
+
 
       <Modal
         isOpen={openAddEditModal.isShow}
@@ -201,7 +207,7 @@ const Home = () => {
           },
         }}
         contentLabel=""
-        className="w-[40%] max-h-3/4 bg-white rounded-md mx-auto mt-14 p-5 overflow-auto"
+        className="w-[90%] sm:w-[60%] lg:w-[40%] max-h-3/4 bg-white rounded-md mx-auto mt-14 p-5 overflow-auto"
       >
         <AddEditNotes
           type={openAddEditModal.type}
