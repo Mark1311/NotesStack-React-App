@@ -87,7 +87,7 @@ const Home = () => {
       const response = await axisoInstance.delete("/delete-note/" + noteId);
 
       if (response.data && !response.data.error) {
-        showToastMessage("Notes deleted SuccessFully", "delete");
+        showToastMessage("Note deleted Successfully", "delete");
         getAllNotes();
       }
     } catch (error) {

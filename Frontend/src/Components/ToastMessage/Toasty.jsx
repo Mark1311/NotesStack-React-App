@@ -6,7 +6,7 @@ export const Toasty = ({isShow, message, type, onClose}) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       onClose();
-    }, 3000);
+    }, 2500);
     return () => {
       clearTimeout(timeoutId);
     };
@@ -24,12 +24,12 @@ export const Toasty = ({isShow, message, type, onClose}) => {
         <div className="flex items-center gap-3 py-2 px-4">
           <div
             className={`w-10 h-10 flex items-center justify-center rounded-full 
-          ${type === "delete" ? "bg-red-50" : "bg-green-50"}`}
+          ${type === "delete" ? "bg-red-50" : "bg-green-100"}`}
           >
             {type === "delete" ? (
-              <MdDeleteOutline className="text-xl text-red-100" />
+              <MdDeleteOutline className="text-xl text-red-600" />
             ) : (
-              <LuCheck className="text-xl text-green-500" />
+              <LuCheck className="text-xl text-green-600" />
             )}
           </div>
           <p className="text-sm text-slate-800">{message}</p>
