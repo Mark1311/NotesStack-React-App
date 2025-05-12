@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axisoInstance from "../../Utils/axiosInstance";
 import Toasty from "../../Components/ToastMessage/Toasty";
 import EmptyCard from "../../Components/EmptyCard/EmptyCard";
-import AddNotesImg from "../../assets/images/react.svg";
-import NoNotesImg from "../../assets/images/react.svg";
+import AddNotesImg from "../../assets/images/HomePage.png";
+import NoNotesImg from "../../assets/images/No_Notes.png";
 
 const Home = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -183,7 +183,7 @@ const Home = () => {
         ) : (
           <EmptyCard
             imgSrc={isSearch ? NoNotesImg : AddNotesImg}
-            message={isSearch ? "Oops No Notes" : "Start Your Notes Here"}
+            message={isSearch ? "Oops..!! No Notes Available" : "Start Your Notes Here....!!!"}
           />
         )}
       </div>

@@ -30,16 +30,28 @@ const Navbar = ({
   };
 
   return (
-    <div className="bg-white w-full px-4 py-3 drop-shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div className="relative bg-white w-full px-4 py-4 drop-shadow flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Logo & Title */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 z-10">
         <img src={Navbar_icons} alt="Navbar_icon" className="w-10 h-10" />
-        <h1 className="text-xl font-medium text-black">NotesStack</h1>
+        <h1 className="text-xl font-semibold text-black">NotesStack</h1>
       </div>
 
       {/* Search Bar */}
       {showSearchBar && userInfo && (
-        <div className="w-full sm:w-auto">
+        <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-full max-w-md">
+          <SerachBar
+            value={searchQuery}
+            onChange={({ target }) => setSearchQuery(target.value)}
+            handleSerach={handleSerach}
+            onClearSearch={onClearSearch}
+          />
+        </div>
+      )}
+
+      {/* Search bar for mobile view */}
+      {showSearchBar && userInfo && (
+        <div className="block sm:hidden w-full">
           <SerachBar
             value={searchQuery}
             onChange={({ target }) => setSearchQuery(target.value)}
@@ -51,7 +63,7 @@ const Navbar = ({
 
       {/* Profile Info */}
       {userInfo && (
-        <div className="w-full sm:w-auto flex justify-end">
+        <div className="flex justify-center sm:justify-end z-10">
           <ProfileInfo userInfo={userInfo} onLogout={onLogout} />
         </div>
       )}
