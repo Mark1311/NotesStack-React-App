@@ -183,20 +183,23 @@ const Home = () => {
         ) : (
           <EmptyCard
             imgSrc={isSearch ? NoNotesImg : AddNotesImg}
-            message={isSearch ? "Oops..!! No Notes Available" : "Start Your Notes Here....!!!"}
+            message={
+              isSearch
+                ? "Oops..!! No Notes Available"
+                : "Start Your Notes Here....!!!"
+            }
           />
         )}
       </div>
 
       <button
-  className="w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-600 border border-transparent hover:bg-white hover:border-blue-500 group fixed right-10 bottom-10 transition-colors duration-200"
-  onClick={() => {
-    setOpenAddEditModal({ isShow: true, type: "add", date: null });
-  }}
->
-  <MdAdd className="text-[32px] text-black group-hover:text-blue-500 transition-colors duration-200" />
-</button>
-
+        className="w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-600 border border-transparent hover:bg-white hover:border-blue-500 group fixed right-10 bottom-10 transition-colors duration-200"
+        onClick={() => {
+          setOpenAddEditModal({ isShow: true, type: "add", date: null });
+        }}
+      >
+        <MdAdd className="text-[32px] text-black group-hover:text-blue-500 transition-colors duration-200 cursor-pointer" />
+      </button>
 
       <Modal
         isOpen={openAddEditModal.isShow}

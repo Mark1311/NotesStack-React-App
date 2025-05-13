@@ -24,7 +24,7 @@ const NoteCard = ({
           </span>
         </div>
         <MdOutlinePushPin
-          className={`${isPinned ? "text-blue-800 text-xl" : "text-gray-800"}`}
+          className={`${isPinned ? "text-blue-800 text-xl cursor-pointer" : "text-gray-800"}`}
           onClick={onPinNote}
         />
       </div>
@@ -39,8 +39,8 @@ const NoteCard = ({
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <FaPencilAlt className="hover:text-green-600 " onClick={onEdit} />
-          <MdDelete className="hover:text-red-600 text-xl" onClick={onDelete} />
+          <FaPencilAlt className="hover:text-green-600 cursor-pointer" onClick={onEdit} />
+          <MdDelete className="hover:text-red-600 text-xl cursor-pointer" onClick={onDelete} />
         </div>
       </div>
     </div>
