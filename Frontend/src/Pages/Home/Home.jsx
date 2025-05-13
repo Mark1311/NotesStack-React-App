@@ -87,7 +87,7 @@ const Home = () => {
       const response = await axisoInstance.delete("/delete-note/" + noteId);
 
       if (response.data && !response.data.error) {
-        showToastMessage("Note deleted Successfully", "delete");
+        showToastMessage("Note Deleted Successfully", "delete");
         getAllNotes();
       }
     } catch (error) {
@@ -134,8 +134,8 @@ const Home = () => {
       if (response.data && response.data.note) {
         showToastMessage(
           !noteData.isPinned
-            ? "Note pinned successfully"
-            : "Note unpinned successfully",
+            ? "Note Pinned Successfully"
+            : "Note Unpinned Successfully",
           "edit"
         );
         getAllNotes();

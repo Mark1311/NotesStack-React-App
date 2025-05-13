@@ -220,7 +220,7 @@ app.get("/get-all-notes/", authenticateToken, async (req, res) => {
     return res.json({
       error: false,
       notes,
-      message: "All Notes Recived SuccessFully",
+      message: "All Note Received Successfully",
     });
   } catch (error) {
     return res.status(500).json({
@@ -240,14 +240,14 @@ app.delete("/delete-note/:noteId", authenticateToken, async (req, res) => {
     const note = await Note.findOne({ _id: noteId, userId: user._id });
 
     if (!note) {
-      return res.status(404).json({ error: true, message: "NOte not Found" });
+      return res.status(404).json({ error: true, message: "Note not Found" });
     }
 
     await Note.deleteOne({ _id: noteId, userId: user._id });
 
     return res.json({
       error: false,
-      message: "Notes Delete Successfully",
+      message: "Note Delete Successfully",
     });
   } catch (error) {
     return res.status(500).json({
@@ -278,7 +278,7 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
     return res.json({
       error: false,
       note,
-      message: "Note Update Succ",
+      message: "Note Update Successfully",
     });
   } catch (error) {
     return res.status(500).json({
